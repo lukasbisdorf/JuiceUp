@@ -30,7 +30,7 @@ module.exports = class Storage {
 	}
 	saveHistory(newHistory) {
 		let id = newHistory.ID;
-
+		db.addHistoryEntry(this._data.Serial, newHistory)
 		this._history[id] = newHistory;
 	}
 }

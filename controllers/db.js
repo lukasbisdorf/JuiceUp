@@ -33,11 +33,21 @@ class DB {
 		}).write();
 	}
 
+	addHistoryEntry(serial, data) {
+		const wallbox = this.getWallbox(serial)
+		if (!wallbox.history) {
+			wallbox.history = []
+		}
+		wallbox.history[data['Session ID']] = data
+		this.editWallbox(serial, wallbox)
+	}
+
 	editWallbox(serial, data) {
 		this.retSerial(serial)
 			.assign({
 				name: data.name,
-				address: data.address
+				address: data.address,
+				history: data.history
 			})
 			.write();
 	}

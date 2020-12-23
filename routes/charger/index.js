@@ -38,7 +38,7 @@ router.get('/:serial/history', (req, res) => {
 
 	let data = Kecontact.getData(req.params.serial);
 	let history = Kecontact.getHistory(req.params.serial);
-
+	history = db.getWallbox(req.params.serial).history;
 	res.render('history', {
 		page: 'history',
 		data: data,
